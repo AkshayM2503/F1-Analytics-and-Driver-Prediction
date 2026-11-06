@@ -15,6 +15,22 @@ potential race winners.
 
 ------------------------------------------------------------------------
 
+## Table of Contents
+
+- [Dashboard Preview](#dashboard-preview)
+- [Flagship Feature: Weighted Driver Prediction Model](#flagship-feature-weighted-driver-prediction-model)
+- [Dashboard Modules](#dashboard-modules)
+- [Database and SQL Analytics](#database-and-sql-analytics)
+- [Dataset](#dataset)
+- [Data Architecture](#data-architecture)
+- [Technology Stack](#technology-stack)
+- [Repository Structure](#repository-structure)
+- [Setup and Installation](#setup-and-installation)
+- [Reproducibility and Notes](#reproducibility-and-notes)
+- [Author](#author)
+
+------------------------------------------------------------------------
+
 ## Dashboard Preview
 
 The Power BI dashboard contains eight interactive analytical pages.
@@ -222,71 +238,50 @@ The imported PostgreSQL database was validated using SQL queries.
 
 ## Data Architecture
 
-The project follows an end-to-end data analytics workflow:
+The diagram below illustrates the end-to-end flow from historical Formula 1
+datasets through Python data preparation, PostgreSQL storage, SQL analytics
+and the Power BI reporting layer.
 
-``` text
-Historical F1 Datasets
-        |
-        v
-Python / Pandas
-        |
-        v
-Data Cleaning and Preprocessing
-        |
-        v
-Cleaned CSV Files
-        |
-        v
-PostgreSQL Database
-        |
-        v
-14 Relational Tables
-        |
-        v
-18 Analytical SQL Views
-        |
-        v
-Power BI Desktop
-        |
-        v
-Interactive F1 Dashboard
-```
+![F1 Analytics System Architecture](screenshots/system_architecture.png)
 
-Power BI connects directly to PostgreSQL using Power Query. Existing DAX
-calculations and the weighted prediction model are retained in the Power
-BI data model.
+**Pipeline overview:**
 
-The database can be refreshed when its underlying historical data is
-updated. The project does not use live race feeds or live telemetry.
+1. **Data sources:** Original historical Formula 1 CSV datasets.
+2. **Data processing:** Python and Pandas for data preparation and cleaning.
+3. **Database layer:** PostgreSQL with 14 relational tables.
+4. **Analytics layer:** 12 core and 6 advanced SQL views for reusable analysis.
+5. **Visualization:** Power BI Desktop, Power Query and DAX measures, including
+   the weighted driver prediction model.
+
+Power BI connects to PostgreSQL using Power Query. The dashboard uses
+historical data and does not consume live race feeds or live telemetry.
+The SQL views provide an additional reusable analytical layer.
 
 ------------------------------------------------------------------------
 
-## Tools and Technologies
+## Technology Stack
 
-  Technology                   Purpose
-  ---------------------------- -----------------------------------------------
-  Python                       Data preparation and preprocessing
-  Pandas                       Data cleaning and manipulation
-  PostgreSQL                   Relational database management
-  SQL                          Analytical queries and database views
-  Microsoft Power BI Desktop   Interactive dashboard development
-  DAX                          Measures and weighted prediction calculations
-  Power Query                  Data transformation and database connectivity
-  Git / GitHub                 Version control and project documentation
+| Technology | Role in the project |
+|---|---|
+| **Python** | Data preparation workflow |
+| **Pandas** | Reading, cleaning and manipulating CSV datasets |
+| **PostgreSQL** | Relational database for the historical F1 datasets |
+| **SQL** | Schema creation, joins, aggregations and analytical views |
+| **Microsoft Power BI Desktop** | Interactive dashboard and reporting |
+| **Power Query** | PostgreSQL connectivity and data transformation |
+| **DAX** | Dashboard measures and weighted driver prediction calculations |
+| **Git and GitHub** | Version control and project publishing |
 
 ------------------------------------------------------------------------
 
 ## Repository Structure
 
-``` text
+```text
 F1-Analytics/
 │
 ├── data/
 │   ├── raw data/
-│   │   └── Original CSV files
-│   │
 │   └── cleaned data/
-│       └── 14 cleaned CSV files
 │
 ├── screenshots/
 │   ├── 01-overview.png
@@ -296,7 +291,8 @@ F1-Analytics/
 │   ├── 05-race-strategy.png
 │   ├── 06-recent-form.png
 │   ├── 07-prediction-model.png
-│   └── 08-race-prediction.png
+│   ├── 08-race-prediction.png
+│   └── system_architecture.png
 │
 ├── python/
 │   └── clean_data.py
@@ -307,19 +303,21 @@ F1-Analytics/
 │   └── advanced_analytics.sql
 │
 ├── docs/
+│   ├── architecture.md
 │   ├── database_schema.md
-│   ├── sql_views.md
-│   └── architecture.md
+│   └── sql_views.md
 │
 ├── powerbi/
 │   └── F1_Analytics_Dashboard.pbix
 │
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
-The repository structure may be adjusted to match the actual files
-included in the published repository.
+The Python script is included as a reproducibility aid. The existing cleaned
+CSV files, PostgreSQL database and completed Power BI report are preserved;
+running the script is not required to use the current project deliverables.
 
 ------------------------------------------------------------------------
 

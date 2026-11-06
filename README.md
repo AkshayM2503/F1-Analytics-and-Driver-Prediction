@@ -399,9 +399,11 @@ The Power BI report uses the PostgreSQL database as its data source.
 
 ## Author
 
-**Akshay Murali**
+Akshay Murali
 
-M.Sc. Computer Science \| RPTU
+M.Sc. Computer Science
+
+GitHub: AkshayM2503
 
 ------------------------------------------------------------------------
 

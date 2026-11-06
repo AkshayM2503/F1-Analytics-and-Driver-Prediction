@@ -403,7 +403,7 @@ Akshay Murali
 
 M.Sc. Computer Science
 
-GitHub: AkshayM2503
+GitHub: [AkshayM2503](https://github.com/AkshayM2503)
 
 ------------------------------------------------------------------------
 
